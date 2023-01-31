@@ -1,13 +1,19 @@
 import random
+from typing import Tuple
+
+def contador_rondas():
+    numero_rondas: int = 1
+    victorias: int = 0
+    derrotas: int = 0
+    return numero_rondas, victorias, derrotas
 
 def show_user_computer():
-    options = ("Piedra", "Papel", "Tijera")
-    user = input("Ingresa la opcion que elegiste: ")
-    user = user.capitalize()
-    computer = random.choice(options)
+    options: Tuple = ("Piedra", "Papel", "Tijera")
+    user: str = input("Ingresa la opcion que elegiste: ").capitalize()
+    computer: str = random.choice(options)
     return user, computer
 
-def who_winner(user, computer, victorias, perdidas):
+def who_winner(user: str, computer: str, victorias: int, perdidas: int):
         if user == computer:
             print("Esta ronda es un EMPATE!!!")
             victorias += 1
@@ -37,13 +43,7 @@ def who_winner(user, computer, victorias, perdidas):
             print("Por favor ingresa una opcion CORRECTA!!!")
         return victorias, perdidas
 
-def contador_rondas():
-    numero_rondas = 1
-    victorias = 0
-    derrotas = 0
-    return numero_rondas, victorias, derrotas
-
-def delimitador_rondas(victorias, derrotas):
+def delimitador_rondas(victorias: int, derrotas: int):
     if victorias == 3:
         if derrotas == 3:
             print(f"Ganaste {victorias} veces")
@@ -61,10 +61,9 @@ def delimitador_rondas(victorias, derrotas):
         print("Gana la COMPUTADORA!!!")
         return exit()
 
-
 def run():
     numero_rondas, victorias, derrotas = contador_rondas()
-    menu = """
+    menu: str = """
         Bienvenido al juego clásico de Piedra, Papel y Tijera
         A continuación alige entre las opciones: 
     """
@@ -77,7 +76,6 @@ def run():
         victorias, derrotas = who_winner(user, computer, victorias, derrotas)
         delimitador_rondas(victorias, derrotas)
         numero_rondas += 1
-
 
 if __name__ == "__main__":
     run()
